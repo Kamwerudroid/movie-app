@@ -23,7 +23,7 @@ const App = () => {
       <div className="border-4 m-5 rounded-md bg-[#0f0a0a] text-[#f5c518] flex flex-col justify-center items-center p-5 mx-40">
         <h1 className="text-center text-3xl font-bold">Movie Application</h1>
         <div className="my-5">
-          <p className="text-center text-xl">Movie list</p>
+          <p className="text-center text-xl pb-3 font-bold">Movie list</p>
           <div>
            
             <input
