@@ -13,8 +13,8 @@ const App = () => {
     }
   };
 
-  const handleDelete = (indexToDelete) => {
-    // Use filter to create a new array without the movie at the specified index
+  //delete function
+  const handleDelete = (indexToDelete) => {    
     setMovies(movies.filter((_, index) => index !== indexToDelete));
   };
 
