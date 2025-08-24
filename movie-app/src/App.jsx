@@ -1,16 +1,21 @@
 import React, { useState } from "react";
 
 const App = () => {
-  // 1. Create a separate state for the input field
+
   const [movieName, setMovieName] = useState("");
   const [movies, setMovies] = useState(["Batman Begins"]);
 
   const addMovie = () => {
-    // 2. Add the value from the input's state
-    if (movieName.trim() !== "") { // Add a check to prevent adding empty strings
+    
+    if (movieName.trim() !== "") { //prevents empty strings
       setMovies([...movies, movieName]);
-      setMovieName(""); // 3. Clear the input field after adding
+      setMovieName(""); // clears input
     }
+  };
+
+  const handleDelete = (indexToDelete) => {
+    // Use filter to create a new array without the movie at the specified index
+    setMovies(movies.filter((_, index) => index !== indexToDelete));
   };
 
   return (
@@ -20,7 +25,7 @@ const App = () => {
         <div className="my-5">
           <p className="text-center text-xl">Movie list</p>
           <div>
-            {/* 4. Correctly bind the input to its state variable */}
+           
             <input
               type="text"
               value={movieName}
@@ -32,6 +37,12 @@ const App = () => {
               {movies.map((movie, index) => (
                 <li key={index} className="my-1">
                   {movie}
+                  <button
+                    onClick={() => handleDelete(index)}
+                    className="ml-4 text-red-500 hover:text-red-700"
+                  >
+                    Delete
+                  </button>
                 </li>
               ))}
             </ul>
