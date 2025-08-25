@@ -48,7 +48,7 @@ const App = () => {
             </ul>
             <div className="mt-4 text-center">
               <button
-                className="bg-[#BDBF09] text-[#0f0a0a] px-4 py-2 rounded-md font-semibold hover:bg-[#8d8e06]"
+                className="bg-[#f5c518] text-[#0f0a0a] px-4 py-2 rounded-md font-semibold hover:bg-[#8d8e06]"
                 onClick={addMovie}
               >
                 Add Movie
