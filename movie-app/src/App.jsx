@@ -1,63 +1,31 @@
-import React, { useState } from "react";
+import React, { useState } from 'react';
+import MovieList from './components/MovieList';
+import AddMovieForm from './components/AddMovieForm'; // Import the new form component
+import { movies as initialMovies } from './data/movies';
+import './App.css';
 
 const App = () => {
+  // Use useState to manage the list of movies
+  const [movies, setMovies] = useState(initialMovies);
 
-  const [movieName, setMovieName] = useState("");
-  const [movies, setMovies] = useState(["Batman Begins"]);
-
-  const addMovie = () => {
+  // Function to add a new movie to the state
+  const handleAddMovie = (newMovie) => {
+    // Add a unique ID to the new movie
+    const movieWithId = {
+      ...newMovie,
+      id: Date.now() // A simple way to generate a unique ID
+    };
     
-    if (movieName.trim() !== "") { //prevents empty strings
-      setMovies([...movies, movieName]);
-      setMovieName(""); // clears input
-    }
-  };
-
-  //delete function
-  const handleDelete = (indexToDelete) => {    
-    setMovies(movies.filter((_, index) => index !== indexToDelete));
+    // Update the movies state immutably by creating a new array
+    setMovies([...movies, movieWithId]);
   };
 
   return (
-    <>
-      <div className="border-4 m-5 rounded-md bg-[#0f0a0a] text-[#f5c518] flex flex-col justify-center items-center p-5 mx-40">
-        <h1 className="text-center text-3xl font-bold">Movie Application</h1>
-        <div className="my-5">
-          <p className="text-center text-xl pb-3 font-bold">Movie list</p>
-          <div>
-           
-            <input
-              type="text"
-              value={movieName}
-              onChange={(e) => setMovieName(e.target.value)}
-              className="bg-gray-800 text-white p-2 rounded-md border border-gray-600"
-              placeholder="Enter a movie name"
-            />
-            <ul className="list-disc pl-5 mt-4">
-              {movies.map((movie, index) => (
-                <li key={index} className="my-1">
-                  {movie}
-                  <button
-                    onClick={() => handleDelete(index)}
-                    className="ml-4 text-red-500 hover:text-red-700"
-                  >
-                    Delete
-                  </button>
-                </li>
-              ))}
-            </ul>
-            <div className="mt-4 text-center">
-              <button
-                className="bg-[#f5c518] text-[#0f0a0a] px-4 py-2 rounded-md font-semibold hover:bg-[#8d8e06]"
-                onClick={addMovie}
-              >
-                Add Movie
-              </button>
-            </div>
-          </div>
-        </div>
-      </div>
-    </>
+    <div className="App">
+      <h1>React Movie List</h1>
+      <AddMovieForm onAddMovie={handleAddMovie} /> {/* Pass the handler to the form */}
+      <MovieList movies={movies} />
+    </div>
   );
 };
 
