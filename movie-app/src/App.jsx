@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import MovieList from './MovieList';
-import AddMovieForm from './AddMovieForm'; // Import the new form component
+import AddMovieForm from './AddMovieForm'; 
 import { movies as initialMovies } from './movies';
 import './App.css';
 
@@ -12,7 +12,7 @@ const App = () => {
     // Add a unique ID to the new movie
     const movieWithId = {
       ...newMovie,
-      id: Date.now() // A simple way to generate a unique ID
+      id: Date.now() 
     };
     
    
@@ -21,8 +21,8 @@ const App = () => {
 
   return (
     <div className="App">
-      <h1>React Movie List</h1>
-      <AddMovieForm onAddMovie={handleAddMovie} /> {/* Pass the handler to the form */}
+      <h1 className='text-3xl font-bold'>Movie App</h1>
+      <AddMovieForm onAddMovie={handleAddMovie} />
       <MovieList movies={movies} />
     </div>
   );
